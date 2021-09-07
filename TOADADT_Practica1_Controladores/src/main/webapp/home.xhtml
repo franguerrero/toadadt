@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+      
+
+<head>
+<title>Practica 1</title>
+</head>
+<body>
+	<p style="color:#{controladorMotor.colorTitulo};font-size:30px">#{controladorMotor.textoTitulo}</p>
+	<hr/>
+	 <h:form>
+        
+        
+        <h:commandButton id="onoffButton" 
+        style="color:#{controladorMotor.colorBtnOnOff}"
+        value="#{controladorMotor.textoBtnOnOff}"  
+        actionListener="#{controladorMotor.actualizarBtnOnOff}" />
+        
+        <h:commandButton id="acelerarButton" 
+        style="color:#{controladorMotor.colorBtnAcelerar}"
+        value="Acelerar"  
+        actionListener="#{controladorMotor.actualizarBtnAcelerar}" />
+    </h:form>
+</body>
+</html>
+ 
