@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script>
+	var baseurl="http://localhost:8080/franguerrero/rest/estaciones";
+	function loadEstacionesmeteo(){
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET",baseurl ,true);
+        xmlhttp.onreadystatechange = function() {
+          if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
+        	  
+        	  
+        	  // get the response XML
+              var xmlDoc = xmlhttp.responseXML;
+
+              // get the list of countries
+              var meteos = xmlDoc.getElementsByTagName("estacionMeteorologica");
+
+              // get the container where you want to embed the table
+              var container = document.getElementById("estacionesinfo");
+
+              var tableString = "<table border='1'><tr><td>Id</td><td>localizacion</td><td>descripcion</td><td>fechalectura</td><td>temperatura</td><td>humedad</td><td>presionAtmosferica</td><td>vientoVelocidad</td></tr>"; // Make a table and put the element data inside it
+              for (i = 0; i < meteos.length; i++) {
+                  tableString += "<tr><td>";
+                  tableString += meteos[i].getElementsByTagName("id")[0].childNodes[0].nodeValue;
+                  tableString +="</td><td>";
+                  tableString += meteos[i].getElementsByTagName("localizacion")[0].childNodes[0].nodeValue;
+                  tableString += "</td><td>";
+                  tableString += meteos[i].getElementsByTagName("descripcion")[0].childNodes[0].nodeValue;
+                  tableString += "</td><td>";
+                  tableString += meteos[i].getElementsByTagName("fechalectura")[0].childNodes[0].nodeValue;
+                  tableString += "</td><td>";
+                  tableString += meteos[i].getElementsByTagName("temperatura")[0].childNodes[0].nodeValue;
+                  tableString += "</td><td>";
+                  tableString += meteos[i].getElementsByTagName("humedad")[0].childNodes[0].nodeValue;
+                  tableString += "</td><td>";
+                  tableString += meteos[i].getElementsByTagName("presionAtmosferica")[0].childNodes[0].nodeValue;
+                  tableString += "</td><td>";
+                  tableString += meteos[i].getElementsByTagName("vientoVelocidad")[0].childNodes[0].nodeValue;
+                  tableString += "</td></tr>";
+              }
+              tableString += "</table>";
+
+              // append the table to the container
+              container.innerHTML = tableString;
+        	  
+        	
+          }
+        };
+        xmlhttp.send();
+      }
+      window.onload = function(){
+    	  loadEstacionesmeteo();
+      }
+</script>
+<title>Listado Estaciones</title>
+</head>
+<body>
+<div id="estacionesinfo">
+
+</br>
+<p><a href="./crear_nueva.html">Crear Otra</a></p>
+<p><a href="./default.html">Inicio</a></p>
+</div>
+</body>
+</html>
